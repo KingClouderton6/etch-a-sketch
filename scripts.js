@@ -1,14 +1,27 @@
 const sketchContainer = document.querySelector('.sketch-container');
+
+createGrid(16);
+
+function newGrid(){
+    num = 0;
+    blankCanvas();
+    // gridSize();
+    // createGrid(num);
+}
+
 const createButton = document.querySelector('#create-grid-btn');
-const clearGridBtn = document.querySelector('#empty-grid-btn');
+createButton.onclick = newGrid;
+let num = 0;
 
 
+function gridSize (){
+    let gridSize = prompt("Please enter canvas size", 16);
+    num = gridSize;
+}
 
-createGrid(64);
 
 function createGrid(num){
    
-
     for(let i = 0; i < num * num; i++){
       const div = document.createElement('div');
         div.classList.add('grid-box');
@@ -31,6 +44,9 @@ function paintGridRed(){
 }
 
 // Turns the canvas back to white
+const clearGridBtn = document.querySelector('#empty-grid-btn');
+clearGridBtn.onclick = blankCanvas;
+
 function blankCanvas(){
     const blankCanvas = document.querySelectorAll('div');
 
@@ -38,19 +54,6 @@ function blankCanvas(){
         div.style.background = 'white';
     });
 };
-
-// sort of broken doens't work on click
-function clearGrid(sketchContainer){
-    while (sketchContainer.firstChild){
-        sketchContainer.removeChild(sketchContainer.firstChild);
-    }
-
-}
-
-
-
-
-
 
 // To function as an eraser (turn divs white)
 function turnWhite(){
