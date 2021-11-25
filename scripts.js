@@ -5,8 +5,9 @@ createGrid(16);
 function newGrid(){
     num = 0;
     blankCanvas();
-    // gridSize();
-    // createGrid(num);
+    clearGrid(sketchContainer);
+    gridSize();
+    createGrid(num);
 }
 
 const createButton = document.querySelector('#create-grid-btn');
@@ -66,6 +67,15 @@ function turnWhite(){
     });
 }
 
+// Func that deletes all grid squares
+
+// A piece of code I will never forget, as it taught me the importance of committing early and committing often.
+function clearGrid(sketchContainer){
+    while (sketchContainer.firstChild){
+        sketchContainer.removeChild(sketchContainer.firstChild);
+    }
+
+}
 
 
 
