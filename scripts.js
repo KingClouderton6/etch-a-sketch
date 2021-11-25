@@ -1,33 +1,39 @@
 const sketchContainer = document.querySelector('.sketch-container');
-
 createGrid(32);
 
-
-
+// Selects 'new' button 
 const createButton = document.querySelector('#create-grid-btn');
 createButton.onclick = newGrid;
-let num = 0;
+let squareCount = 0;
+
 
 function newGrid(){
-    num = 0;
+    squareCount = 0;
     blankCanvas();
     clearGrid(sketchContainer);
     gridSize();
-    createGrid(num);
+    createGrid(squareCount);
 }
 
 function gridSize (){
     let gridSize = prompt("Please enter canvas size", 16);
-    num = gridSize;
+
+    if (gridSize < 16 || gridSize > 100){
+        alert(`Min canvas size is 16 \nMax canvas size is 100`);
+        gridSize();
+    } 
+
+    squareCount = gridSize;
+
 }
 
 
-function createGrid(num){
+function createGrid(squareCount){
    
-    for(let i = 0; i < num * num; i++){
+    for(let i = 0; i < squareCount * squareCount; i++){
       const div = document.createElement('div');
         div.classList.add('grid-box');
-        div.style.width = `${480/num}px`;
+        div.style.width = `${480/squareCount}px`;
         sketchContainer.appendChild(div);
     }
 
@@ -62,7 +68,6 @@ function paintGridBlack(){
     });
 }
 
-
 // Turns the canvas back to white
 const clearGridBtn = document.querySelector('#empty-grid-btn');
 clearGridBtn.onclick = blankCanvas;
@@ -86,7 +91,6 @@ function turnWhite(){
     });
 }
 
-
 // Func that deletes all grid squares &
 // A piece of code I will never forget, as it taught me the importance of committing early and committing often.
 function clearGrid(sketchContainer){
@@ -95,10 +99,3 @@ function clearGrid(sketchContainer){
     }
 
 }
-
-
-
-
-
-
-
